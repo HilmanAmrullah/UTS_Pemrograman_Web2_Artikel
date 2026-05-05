@@ -1,6 +1,6 @@
-| Nama        | Hilman Ihza Amrullah | <b>
-| NIM         | 312210310            | <b>
-| Mata Kuliah | Pemrograman Web 2    | <b>
+| Nama        | Hilman Ihza Amrullah | <br>
+| NIM         | 312210310            | <br>
+| Mata Kuliah | Pemrograman Web 2    | <br>
 
 # UTS Pemrograman Web 2
 Eksperimen SQL Injection pada Sistem Login Berbasis PHP dan Mitigasinya
