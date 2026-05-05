@@ -48,14 +48,14 @@ if(mysqli_num_rows($result) > 0){
 }else{
     echo "Login gagal";
 }
-?>```
+?>
 <br>
 
 ## Eksperimen Serangan
 ### Bypass Login
 
 Input:
-```' OR '1'='1```
+```' OR '1'='1
 Hasil:
 Login berhasil tanpa akun valid
 
@@ -82,10 +82,10 @@ if($result->num_rows > 0){
 }else{
     echo "Login gagal";
 }
-?>```
+?>
 
 ### 2. Hashing Password
-```$password = password_hash($_POST['password'], PASSWORD_DEFAULT);```
+```$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 ## Kesimpulan
 
