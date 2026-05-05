@@ -32,9 +32,9 @@ CREATE TABLE user (
 );
 
 INSERT INTO user (username, password) VALUES ('admin', '12345');
-
-
-<?php
+```
+## Implementasi Awal Rentan
+```<?php
 $conn = mysqli_connect("localhost", "root", "", "test");
 
 $username = $_POST['username'];
@@ -48,4 +48,45 @@ if(mysqli_num_rows($result) > 0){
 }else{
     echo "Login gagal";
 }
-?>
+?>```
+<br>
+
+## Eksperimen Serangan
+### Bypass Login
+
+Input:
+```' OR '1'='1```
+Hasil:
+Login berhasil tanpa akun valid
+
+## Analisis
+
+Query menjadi selalu bernilai benar sehingga sistem mengizinkan akses tanpa verifikasi yang sah.
+
+## Mitigasi
+### 1. Prepared Statement
+``` <?php
+$conn = mysqli_connect("localhost", "root", "", "test");
+
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+$stmt = $conn->prepare("SELECT * FROM user WHERE username=? AND password=?");
+$stmt->bind_param("ss", $username, $password);
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+if($result->num_rows > 0){
+    echo "Login berhasil";
+}else{
+    echo "Login gagal";
+}
+?>```
+
+### 2. Hashing Password
+```$password = password_hash($_POST['password'], PASSWORD_DEFAULT);```
+
+## Kesimpulan
+
+SQL Injection terjadi akibat kurangnya validasi input. Dengan prepared statement dan hashing password, sistem menjadi lebih aman.
