@@ -1,4 +1,3 @@
-## Informasi
 | Informasi       | Keterangan                          |
 |-----------------|-------------------------------------|
 | Nama            | Hilman Ihza Amrullah               |
@@ -9,9 +8,6 @@
 # UTS Pemrograman Web 2
 Eksperimen SQL Injection pada Sistem Login Berbasis PHP dan Mitigasinya
 [Link Artikel](https://medium.com/@hilmanamr22/eksperimen-sql-injection-pada-sistem-login-berbasis-php-dan-upaya-mitigasinya-f93d01dd1eff)
-
-Repositori ini berisi hasil eksperimen terhadap celah keamanan SQL Injection pada sistem login sederhana berbasis PHP dan MySQL. Eksperimen dilakukan untuk memahami cara kerja serangan serta menerapkan teknik mitigasi yang tepat.
-
 
 ---
 
@@ -27,7 +23,7 @@ SQL Injection merupakan celah keamanan pada aplikasi web yang terjadi karena inp
 
 ---
 
-## Struktur Database
+## Struktur Database 
 ```sql
 CREATE TABLE user (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -36,3 +32,20 @@ CREATE TABLE user (
 );
 
 INSERT INTO user (username, password) VALUES ('admin', '12345');
+
+
+<?php
+$conn = mysqli_connect("localhost", "root", "", "test");
+
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+$query = "SELECT * FROM user WHERE username='$username' AND password='$password'";
+$result = mysqli_query($conn, $query);
+
+if(mysqli_num_rows($result) > 0){
+    echo "Login berhasil";
+}else{
+    echo "Login gagal";
+}
+?>
